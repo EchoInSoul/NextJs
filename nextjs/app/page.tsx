@@ -1,4 +1,5 @@
-import Hero from '@/components/home/hero';
+import HomeTop from '@/components/home/home-top';
+import EssayBar from '@/components/home/essay-bar';
 import Featured from '@/components/home/featured';
 import PostList from '@/components/home/post-list';
 import About from '@/components/home/about';
@@ -16,7 +17,8 @@ export default async function Home() {
 
   return (
     <div>
-      <Hero />
+      <EssayBar />
+      <HomeTop />
       <Featured posts={featuredPosts} />
       <PostList posts={allPosts} />
       <About />
