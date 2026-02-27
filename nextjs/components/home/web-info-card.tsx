@@ -2,7 +2,7 @@
 
 import { useMemo } from "react";
 import Link from "next/link";
-import styles from "./WebInfoCard.module.css";
+import styles from "./web-info-card.module.css";
 
 interface WebInfoCardProps {
   tags?: Array<{ name: string; count: number }>;

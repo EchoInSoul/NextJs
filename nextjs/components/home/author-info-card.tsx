@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from "react";
 import Link from "next/link";
-import styles from "./AuthorInfoCard.module.css";
+import styles from "./author-info-card.module.css";
 
 interface AuthorConfig {
   description: string;

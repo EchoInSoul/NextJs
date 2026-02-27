@@ -5,7 +5,6 @@ import { usePathname } from 'next/navigation';
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { navConfig } from '@/config/nav.config';
 
-// 默认配置
 const defaultConfig = navConfig;
 
 export default function Navbar({ config = defaultConfig }) {
@@ -82,9 +81,7 @@ export default function Navbar({ config = defaultConfig }) {
       <div className="container mx-auto px-4 sm:px-6 max-w-[1400px] h-full">
         <div id="nav-group" className="flex items-center justify-between h-full relative">
           
-          {/* 左侧区域：盒子菜单 + 首页链接 */}
           <div id="blog_name" className="flex items-center gap-2 z-[102] transition-all duration-300">
-            {/* 盒子菜单（Group Menu） */}
             {config.group && Object.keys(config.group).length > 0 && (
               <div className="nav-item relative hidden lg:block group">
                 <div className="menus_item relative">
@@ -101,7 +98,6 @@ export default function Navbar({ config = defaultConfig }) {
                     <i className="fas fa-bars-progress text-lg"></i>
                   </button>
 
-                  {/* 盒子菜单下拉内容 */}
                   <div 
                     className="absolute left-0 transition-all duration-300 z-[9999] opacity-0 invisible pointer-events-none group-hover:opacity-100 group-hover:visible group-hover:pointer-events-auto" 
                     style={{ top: 'calc(100% + 8px)' }}
@@ -132,7 +128,6 @@ export default function Navbar({ config = defaultConfig }) {
               </div>
             )}
 
-            {/* 首页链接 (Blog Name) */}
             <Link 
               href="/" 
               id="site-name"
@@ -148,7 +143,6 @@ export default function Navbar({ config = defaultConfig }) {
             </Link>
           </div>
 
-          {/* 中间区域：主菜单 */}
           <div id="menus" className="hidden lg:flex absolute left-0 right-0 justify-center h-[60px] items-center pointer-events-none">
             <div className="menus_items flex flex-row justify-center items-center gap-1 pointer-events-auto">
               {Object.entries(config.menu).map(([label, value]) => {
@@ -211,7 +205,6 @@ export default function Navbar({ config = defaultConfig }) {
             </div>
           </div>
 
-          {/* 右侧区域：功能按钮 */}
           <div id="nav-right" className="flex items-center gap-2 z-[102]">
             {config.showRandom && (
               <div className="menus_item relative">
@@ -241,7 +234,6 @@ export default function Navbar({ config = defaultConfig }) {
               </div>
             )}
 
-            {/* 移动端菜单开关 */}
             <div className="menus_item relative lg:hidden">
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -257,7 +249,6 @@ export default function Navbar({ config = defaultConfig }) {
           </div>
         </div>
 
-        {/* 移动端菜单下拉内容 */}
         {isMobileMenuOpen && (
           <div className="lg:hidden border-t border-gray-200 dark:border-gray-700 py-4 absolute top-full left-0 right-0 
             bg-white dark:bg-gray-900 shadow-lg max-h-[calc(100vh-60px)] overflow-y-auto"

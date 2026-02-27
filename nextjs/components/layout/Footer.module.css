@@ -13,7 +13,6 @@
   padding: 2rem 1.5rem 1rem;
 }
 
-/* 社交图标栏 */
 .footerSocialBar {
   display: flex;
   justify-content: center;
@@ -67,7 +66,6 @@
   box-shadow: 0 4px 12px var(--zopt-main-op);
 }
 
-/* 链接网格 */
 .footerLinkGrid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -133,7 +131,6 @@
   transform: translateX(4px);
 }
 
-/* 底部栏 */
 .footerBottomBar {
   background: var(--zopt-secondbg);
   border-top: var(--style-border);
@@ -253,7 +250,6 @@
   height: 16px;
 }
 
-/* 响应式设计 */
 @media (max-width: 768px) {
   .footerWrap {
     padding: 1.5rem 1rem 0.75rem;

@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo } from "react";
-import styles from "./CalendarCard.module.css";
+import styles from "./calendar-card.module.css";
 
 export default function CalendarCard() {
   const calendarData = useMemo(() => {

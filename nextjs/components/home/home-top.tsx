@@ -4,7 +4,6 @@ import { useMemo } from "react";
 import Link from "next/link";
 import TodayCard from "./today-card";
 
-// 模拟配置数据
 const HOME_TOP = {
   title: "生活明朗",
   subTitle: "万物可爱。",
@@ -16,7 +15,6 @@ const HOME_TOP = {
   ]
 };
 
-// 创意图标配置
 const CREATIVITY = {
   creativity_list: [
     { name: "HTML5", icon: "https://simpleicons.org/icons/html5.svg", color: "#E34F26" },
@@ -31,13 +29,11 @@ const CREATIVITY = {
 };
 
 export default function HomeTop() {
-  // 创意图标列表（重复一次用于无限滚动）
   const creativityList = useMemo(() => {
     const list = CREATIVITY.creativity_list;
     return [...list, ...list];
   }, []);
 
-  // 创意图标配对
   const creativityPairs = useMemo(() => {
     const pairs: Array<[(typeof creativityList)[0], (typeof creativityList)[0]]> = [];
     for (let i = 0; i < creativityList.length; i += 2) {
@@ -50,18 +46,14 @@ export default function HomeTop() {
 
   return (
     <div className="home-top-container flex w-full gap-2 mt-2 mx-auto max-w-[1400px] px-4 md:px-6">
-      {/* 左侧区域 */}
       <div className="left-section flex flex-col flex-1 gap-3 min-w-0 h-[340px] w-1/2">
-        {/* 随机 Banner */}
         <div className="random-banner relative flex-[3] w-full overflow-hidden bg-[#181818] border border-[var(--border)] rounded-xl shadow-[0_8px_16px_-4px_rgba(0,0,0,0.05)] transition-all duration-300 group">
-          {/* 标题 */}
           <div className="banners-title absolute top-[2.9rem] left-8 z-[2] mb-2">
             <div className="banners-title-big mb-2 text-5xl font-bold leading-tight text-white">{HOME_TOP.title}</div>
             <div className="banners-title-big mb-2 text-5xl font-bold leading-tight text-white">{HOME_TOP.subTitle}</div>
             <div className="banners-title-small mt-4 mb-2 text-sm leading-none text-gray-400 uppercase tracking-widest">{HOME_TOP.siteText}</div>
           </div>
 
-          {/* 创意图标区域 */}
           <div className="skills-tags-group-all absolute top-0 left-0 z-[1] flex w-full h-full mt-2 transition-all duration-300 -rotate-[30deg] scale-125 opacity-100 md:opacity-100 md:blur-0 translate-x-[20%]">
             <div className="tags-group-wrapper flex flex-nowrap animate-rowup">
               {creativityPairs.map((pair, index) => (
@@ -91,7 +83,6 @@ export default function HomeTop() {
             </div>
           </div>
 
-          {/* 随便逛逛按钮 (Hover时显示) */}
           <Link
             href="/posts/random"
             className="random-hover absolute top-0 left-0 z-[3] flex flex-col items-start justify-center w-full h-full pl-8 text-white bg-[rgba(66,90,239,0.9)] backdrop-blur-[15px] opacity-0 transition-all duration-500 ease-[cubic-bezier(0.71,0.15,0.16,1.15)] group-hover:opacity-100 group-hover:pl-12 cursor-pointer overflow-hidden"
@@ -100,14 +91,13 @@ export default function HomeTop() {
               随便逛逛
               <div className="text-[3rem] md:text-[4.5rem] ml-2 md:ml-4">
                 <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="1em" height="1em" viewBox="0 0 448 512">
-                  <path fill="currentColor" d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path>
+                  <path fill="currentColor" d="M438.6 278.6c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path>
                 </svg>
               </div>
             </div>
           </Link>
         </div>
 
-        {/* 分类按钮组 */}
         <div className="category-group flex gap-3 flex-1 min-h-0">
           {HOME_TOP.category.map((item) => (
             <div key={item.name} className="category-item relative flex-1 min-h-0 transition-all duration-300 hover:scale-[1.02] group">
@@ -125,7 +115,6 @@ export default function HomeTop() {
         </div>
       </div>
 
-      {/* 右侧区域 */}
       <div className="right-section flex flex-col w-1/2 h-[340px] gap-3">
         <TodayCard />
       </div>
