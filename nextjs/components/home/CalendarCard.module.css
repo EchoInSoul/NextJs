@@ -1,0 +1,243 @@
+/* CalendarCard - 日历卡片 */
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 2px 8px var(--zopt-main-op);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 4px 16px var(--zopt-main-op-deep);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.cardWidget {
+  position: relative;
+  padding: 1.5rem;
+  margin-top: 1rem;
+  background: linear-gradient(135deg, var(--card) 0%, var(--zopt-secondbg) 100%);
+  border: var(--style-border);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+}
+
+.cardWidget:hover {
+  box-shadow: var(--zopt-shadow-border), 0 4px 20px rgba(66, 90, 239, 0.1);
+  transform: translateY(-2px);
+}
+
+.itemContent {
+  display: flex;
+  gap: 1rem;
+  align-items: stretch;
+}
+
+.calendarAreaLeft {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 85px;
+  max-width: 85px;
+  padding-right: 0.75rem;
+  border-right: 2px solid var(--border);
+  position: relative;
+}
+
+.calendarAreaLeft::after {
+  content: "";
+  position: absolute;
+  right: -1px;
+  top: 20%;
+  height: 60%;
+  width: 2px;
+  background: linear-gradient(180deg, transparent, var(--zopt-main), transparent);
+  opacity: 0.3;
+}
+
+.calendarWeek {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--zopt-secondtext);
+  margin-bottom: 0.75rem;
+  white-space: nowrap;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.calendarDate {
+  font-size: 40px;
+  font-weight: 800;
+  line-height: 1;
+  background: linear-gradient(135deg, var(--zopt-main) 0%, var(--zopt-main-op-deep) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0.5rem 0;
+  font-family: var(--zopt-font-family-mono);
+  animation: fadeInUp 0.6s ease-out;
+  position: relative;
+}
+
+.calendarMonth {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--zopt-fontcolor);
+  margin-bottom: 0.5rem;
+  white-space: nowrap;
+}
+
+.calendarSolar {
+  font-size: 11px;
+  color: var(--zopt-secondtext);
+  margin-bottom: 0.25rem;
+  white-space: nowrap;
+  padding: 2px 8px;
+  background: var(--zopt-main-op);
+  border-radius: 12px;
+  display: inline-block;
+  width: fit-content;
+}
+
+.calendarLunar {
+  font-size: 11px;
+  color: var(--zopt-main);
+  white-space: nowrap;
+  margin-top: 0.25rem;
+  font-weight: 500;
+}
+
+.calendarAreaRight {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.calendarHeader {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.25rem;
+  padding: 0 2px;
+}
+
+.calendarHeaderDay {
+  flex: 1;
+  text-align: center;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--zopt-secondtext);
+  padding: 4px 0;
+}
+
+.calendarHeaderDay:first-child,
+.calendarHeaderDay:last-child {
+  color: var(--zopt-main);
+}
+
+.calendarMain {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.calendarRow {
+  display: flex;
+  justify-content: space-between;
+  gap: 2px;
+}
+
+.calendarDay {
+  flex: 1;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 26px;
+}
+
+.dayNumber {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--zopt-fontcolor);
+  border-radius: 50%;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  position: relative;
+}
+
+.dayNumber:hover {
+  background: var(--zopt-main-op);
+  color: var(--zopt-main);
+  transform: scale(1.15);
+}
+
+.dayNumber.now {
+  background: linear-gradient(135deg, var(--zopt-main) 0%, var(--zopt-main-op-deep) 100%);
+  color: var(--zopt-white);
+  font-weight: 700;
+  box-shadow: 0 4px 12px var(--zopt-main-op);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.dayNumber.now:hover {
+  transform: scale(1.2);
+  box-shadow: 0 6px 20px var(--zopt-main-op-deep);
+}
+
+.calendarRow .calendarDay:first-child .dayNumber:not(.now),
+.calendarRow .calendarDay:last-child .dayNumber:not(.now) {
+  color: var(--zopt-main);
+  opacity: 0.8;
+}
+
+.calendarRow .calendarDay:first-child .dayNumber:not(.now):hover,
+.calendarRow .calendarDay:last-child .dayNumber:not(.now):hover {
+  opacity: 1;
+}
+
+@media (max-width: 768px) {
+  .cardWidget {
+    padding: 1rem;
+  }
+  
+  .calendarDate {
+    font-size: 32px;
+  }
+  
+  .dayNumber {
+    width: 22px;
+    height: 22px;
+    font-size: 10px;
+  }
+  
+  .calendarDay {
+    height: 24px;
+  }
+  
+  .calendarAreaLeft {
+    min-width: 75px;
+    max-width: 75px;
+    padding-right: 0.5rem;
+  }
+}

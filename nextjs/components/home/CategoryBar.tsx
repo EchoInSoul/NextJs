@@ -8,7 +8,7 @@ interface CategoryBarProps {
 
 export default function CategoryBar({ categories }: CategoryBarProps) {
   return (
-    <div className="category-bar w-full max-w-[1400px] mx-auto px-4 md:px-6 mt-4">
+    <div className="category-bar mb-4">
       <div className="category-bar-container flex items-center justify-between bg-[var(--card)] border border-[var(--border)] rounded-xl px-4 py-2">
         <div className="catalog-list flex items-center gap-1 overflow-x-auto scrollbar-hide">
           <Link

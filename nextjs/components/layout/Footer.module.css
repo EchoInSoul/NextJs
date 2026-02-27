@@ -1,0 +1,297 @@
+/* Footer - 页脚样式 */
+
+.footerContainer {
+  position: relative;
+  background: linear-gradient(180deg, var(--background) 0%, var(--zopt-secondbg) 100%);
+  border-top: var(--style-border);
+  overflow: hidden;
+}
+
+.footerWrap {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 1rem;
+}
+
+/* 社交图标栏 */
+.footerSocialBar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.socialLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  color: var(--zopt-fontcolor);
+  background: var(--card);
+  border: var(--style-border);
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.socialLink:hover {
+  color: var(--zopt-white);
+  background: var(--zopt-main);
+  border-color: var(--zopt-main);
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px var(--zopt-main-op);
+}
+
+.socialLink svg {
+  width: 18px;
+  height: 18px;
+}
+
+.footerBackToTop {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid var(--border);
+  object-fit: cover;
+}
+
+.footerBackToTop:hover {
+  transform: translateY(-3px) scale(1.1);
+  box-shadow: 0 4px 12px var(--zopt-main-op);
+}
+
+/* 链接网格 */
+.footerLinkGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.footerGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.footerTitleGroup {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.footerTitle {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--zopt-fontcolor);
+  margin-bottom: 0.25rem;
+}
+
+.randomFriendsBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  color: var(--zopt-secondtext);
+  background: transparent;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.randomFriendsBtn:hover {
+  color: var(--zopt-main);
+  background: var(--zopt-main-op);
+}
+
+.footerLinks {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.footerItem {
+  font-size: 13px;
+  color: var(--zopt-secondtext);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  padding: 0.25rem 0;
+}
+
+.footerItem:hover {
+  color: var(--zopt-main);
+  transform: translateX(4px);
+}
+
+/* 底部栏 */
+.footerBottomBar {
+  background: var(--zopt-secondbg);
+  border-top: var(--style-border);
+  padding: 1rem 1.5rem;
+}
+
+.barContent {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.barLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.copyrightInfo {
+  font-size: 12px;
+  color: var(--zopt-secondtext);
+}
+
+.barLink {
+  color: var(--zopt-fontcolor);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.barLink:hover {
+  color: var(--zopt-main);
+}
+
+.recordInfo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.recordLink {
+  font-size: 12px;
+  color: var(--zopt-secondtext);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.recordLink:hover {
+  color: var(--zopt-main);
+}
+
+.uptimeStatusIndicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.25rem 0.75rem;
+  background: var(--card);
+  border: var(--style-border);
+  border-radius: 12px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.uptimeStatusIndicator:hover {
+  border-color: var(--zopt-main);
+}
+
+.statusDot {
+  width: 8px;
+  height: 8px;
+  background: #52c41a;
+  border-radius: 50%;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.2);
+  }
+}
+
+.statusText {
+  font-size: 11px;
+  color: var(--zopt-secondtext);
+}
+
+.barRight {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.ccLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  color: var(--zopt-secondtext);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.ccLink:hover {
+  color: var(--zopt-main);
+}
+
+.ccLink svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .footerWrap {
+    padding: 1.5rem 1rem 0.75rem;
+  }
+  
+  .footerLinkGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+  
+  .barContent {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .barRight {
+    width: 100%;
+    justify-content: flex-start;
+    gap: 1rem;
+  }
+  
+  .footerSocialBar {
+    gap: 0.5rem;
+  }
+  
+  .socialLink {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .socialLink svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .footerLinkGrid {
+    grid-template-columns: 1fr;
+  }
+}

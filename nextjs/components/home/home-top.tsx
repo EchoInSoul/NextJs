@@ -10,9 +10,9 @@ const HOME_TOP = {
   subTitle: "万物可爱。",
   siteText: "ZEROPOINT",
   category: [
-    { name: "前端", path: "/categories/前端", background: "linear-gradient(to right, #358bff, #15c6ff)" },
-    { name: "生活", path: "/categories/生活", background: "linear-gradient(to right, #ff9a9e, #fad0c4)" },
-    { name: "安和鱼", path: "/categories/安和鱼", background: "linear-gradient(to right, #11998e, #38ef7d)" },
+    { name: "语文", path: "/categories/语文", background: "linear-gradient(to right, #358bff, #15c6ff)" },
+    { name: "数学", path: "/categories/数学", background: "linear-gradient(to right, #ff9a9e, #fad0c4)" },
+    { name: "英语", path: "/categories/英语", background: "linear-gradient(to right, #11998e, #38ef7d)" },
   ]
 };
 

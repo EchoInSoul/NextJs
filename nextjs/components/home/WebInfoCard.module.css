@@ -1,0 +1,117 @@
+/* WebInfoCard - 网站信息卡片 */
+
+.cardWidget {
+  position: relative;
+  padding: 1rem;
+  margin-top: 1rem;
+  background: var(--card);
+  border: var(--style-border);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.cardWidget:hover {
+  box-shadow: var(--zopt-shadow-border);
+}
+
+/* 标签云 */
+.cardTagCloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 0.5rem;
+}
+
+.tagLink {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  font-size: 12px;
+  color: var(--zopt-fontcolor);
+  background: var(--zopt-main-op);
+  border-radius: 12px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.tagLink:hover {
+  background: var(--zopt-main);
+  color: var(--zopt-white);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px var(--zopt-main-op);
+}
+
+.tagLink sup {
+  margin-left: 4px;
+  font-size: 10px;
+  font-weight: 700;
+  opacity: 0.7;
+  color: inherit;
+}
+
+.tagLink:hover sup {
+  opacity: 1;
+}
+
+/* 分隔线 */
+.divider {
+  margin: 1rem 0;
+  border: none;
+  border-top: 1px solid var(--border);
+}
+
+/* 网站信息 */
+.webinfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.webinfoItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.25rem 0;
+  transition: all 0.3s ease;
+}
+
+.webinfoItem:hover {
+  background: var(--zopt-main-op);
+  margin: 0 -0.5rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 8px;
+}
+
+.itemName {
+  font-size: 13px;
+  color: var(--zopt-secondtext);
+  font-weight: 500;
+}
+
+.itemCount {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--zopt-fontcolor);
+}
+
+.webinfoItem:hover .itemName {
+  color: var(--zopt-fontcolor);
+}
+
+.webinfoItem:hover .itemCount {
+  color: var(--zopt-main);
+}
+
+@media (max-width: 768px) {
+  .tagLink {
+    font-size: 11px;
+    padding: 3px 8px;
+  }
+  
+  .itemName,
+  .itemCount {
+    font-size: 12px;
+  }
+}
