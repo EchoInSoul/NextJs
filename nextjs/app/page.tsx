@@ -1,8 +1,8 @@
-import Hero from '@/components/home/Hero';
-import Featured from '@/components/home/Featured';
-import PostList from '@/components/home/PostList';
-import About from '@/components/home/About';
-import Footer from '@/components/Footer';
+import Hero from '@/components/home/hero';
+import Featured from '@/components/home/featured';
+import PostList from '@/components/home/post-list';
+import About from '@/components/home/about';
+import Footer from '@/components/layout/footer';
 import { getPosts, getFeaturedPosts } from '@/lib/getPosts';
 
 export const metadata = {

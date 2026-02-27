@@ -3,6 +3,22 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --container-max-width: 1400px;
+  --container-padding: 1.5rem;
+  --efu-main: #425aef;
+  --efu-main-op: #425aef23;
+  --efu-card-bg: #ffffff;
+  --efu-card-border: #e3e8f7;
+  --efu-fontcolor: #363636;
+  --efu-secondtext: rgba(60, 60, 67, 0.8);
+  --efu-lighttext: var(--efu-main);
+  --efu-white: #ffffff;
+  --efu-none: transparent;
+  --efu-maskbgdeep: rgba(255, 255, 255, 0.85);
+  --efu-shadow-main: 0 8px 16px -4px rgba(66, 90, 239, 0.3);
+  --efu-shadow-border: 0 8px 16px -4px #2c2d300c;
+  --style-border: 1px solid var(--efu-card-border);
+  --style-border-hover: 1px solid var(--efu-main);
 }
 
 @theme inline {
@@ -14,8 +30,14 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #18171d;
+    --foreground: #f7f7fa;
+    --efu-card-bg: #1b1c20;
+    --efu-card-border: #3d3d3f;
+    --efu-fontcolor: #f7f7fa;
+    --efu-secondtext: #a1a2b8;
+    --efu-maskbgdeep: rgba(0, 0, 0, 0.85);
+    --efu-shadow-border: 0 8px 16px -4px #00000050;
   }
 }
 
@@ -23,4 +45,112 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Solitude 风格：滚动后的导航背景与毛玻璃 */
+.nav-scrolled {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+@media (prefers-color-scheme: dark) {
+  .nav-scrolled {
+    background: rgba(27, 28, 32, 0.95);
+  }
+}
+
+/* 菜单项通用交互（Solitude 风格） */
+.menu-item,
+.back-menu-item {
+  display: flex;
+  align-items: center;
+  color: var(--efu-fontcolor);
+  background: transparent;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.menu-item:hover,
+.back-menu-item:hover {
+  background: var(--efu-lighttext);
+  color: var(--efu-card-bg);
+}
+
+/* Navbar 容器内按钮与链接的统一 Solitude 动画 */
+/* 应用于: .site-page (主菜单), .menus_item_child (子菜单) */
+
+/* 1. 基础状态 */
+.site-page {
+  position: relative;
+  display: flex;
+  align-items: center;
+  color: var(--efu-fontcolor);
+  font-size: 14px;
+  font-weight: 700;
+  padding: 0 12px;
+  height: 36px;
+  border-radius: 8px; /* 统一修改为 8px */
+  transition: all 0.3s ease;
+  cursor: pointer;
+  z-index: 1;
+}
+
+/* 2. 悬停效果：背景色、文字变色、阴影、上浮 */
+.site-page:hover {
+  background: var(--efu-lighttext); /* 主题色背景 */
+  color: var(--efu-card-bg) !important; /* 白色文字 */
+  box-shadow: var(--efu-shadow-main); /* 主题色阴影 */
+  transform: translateY(-2px) scale(1.02); /* 轻微上浮与缩放 */
+}
+
+/* 3. 子菜单项悬停右移动画 (应用于下拉项) */
+.site-page.child {
+  border-radius: 8px; /* 下拉菜单内的小项保持 8px */
+  height: 34px;
+  font-weight: normal;
+}
+
+/* 统一修改：主菜单项圆角 */
+.site-page,
+.menu-item,
+.back-menu-item {
+  border-radius: 8px; /* Solitude 主菜单标准圆角修正为 8px */
+}
+
+/* 6. 图标动画 */
+.site-page i {
+  transition: transform 0.3s ease;
+}
+.site-page:hover i {
+  transform: scale(1.1);
+}
+
+.site-page.child:hover {
+  transform: translateX(4px); /* 子菜单悬停右移 */
+}
+.menus_item_child {
+  border-radius: 12px; /* 下拉框整体圆角 */
+  transform: translateX(-50%) translateY(10px) scale(0.95);
+  transition: all 0.3s cubic-bezier(0.42, 0, 0.3, 1.11);
+}
+
+/* 增加伪元素作为“隐形桥梁”，防止鼠标在移动到子菜单前就触发 leave */
+.menus_item {
+  position: relative; /* 确保伪元素相对于菜单项定位 */
+}
+
+.menus_item::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120%; /* 扩大感应范围 */
+  height: 30px; /* 增加高度以覆盖间隙 */
+  display: block;
+  z-index: 998; /* 位于子菜单下方但高于其他内容 */
+}
+
+.group:hover .menus_item_child {
+  transform: translateX(-50%) translateY(0) scale(1);
 }
