@@ -8,7 +8,7 @@ import TodayCard from "./today-card";
 const HOME_TOP = {
   title: "生活明朗",
   subTitle: "万物可爱。",
-  siteText: "ANHEYU.COM",
+  siteText: "ZEROPOINT",
   category: [
     { name: "前端", path: "/categories/前端", background: "linear-gradient(to right, #358bff, #15c6ff)" },
     { name: "生活", path: "/categories/生活", background: "linear-gradient(to right, #ff9a9e, #fad0c4)" },

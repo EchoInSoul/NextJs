@@ -1,6 +1,6 @@
 // 导航栏配置
 export const navConfig = {
-  siteName: 'Solitude',
+  siteName: 'ZEROPOINT',
   
   // 分组导航（左侧盒子菜单）
   group: {

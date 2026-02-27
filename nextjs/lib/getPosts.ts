@@ -1,10 +1,8 @@
 import { Post } from '@/types/post';
 
-// 缓存配置
-const CACHE_REVALIDATE = 3600; // 1小时
+const CACHE_REVALIDATE = 3600;
 
 export async function getPosts(): Promise<Post[]> {
-  // 临时模拟数据，后续可替换为实际数据源
   const posts: Post[] = [
     {
       slug: 'first-post',
@@ -47,5 +45,17 @@ export async function getPostBySlug(slug: string): Promise<Post | undefined> {
   return posts.find(post => post.slug === slug);
 }
 
-// 用于 ISR 的重新验证时间
+export async function getCategories(): Promise<string[]> {
+  const posts = await getPosts();
+  const categoriesSet = new Set<string>();
+  
+  posts.forEach(post => {
+    if (post.tags) {
+      post.tags.forEach(tag => categoriesSet.add(tag));
+    }
+  });
+  
+  return Array.from(categoriesSet).sort();
+}
+
 export const revalidate = CACHE_REVALIDATE;

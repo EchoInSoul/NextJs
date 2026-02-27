@@ -2,7 +2,7 @@
 
 export default function TodayCard() {
   const handleClick = () => {
-    window.open("https://solitude.js.org", "_blank");
+    window.open("https://zeropoint.js.org", "_blank");
   };
 
   return (
@@ -15,7 +15,7 @@ export default function TodayCard() {
           置顶
         </div>
         <div className="today-card-title text-2xl font-bold text-white leading-tight">
-          Solitude 官方文档
+          ZEROPOINT 官方文档
         </div>
       </div>
       <div 
