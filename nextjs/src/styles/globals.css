@@ -4,34 +4,185 @@
 @import "./footer.css";
 @import "./info.css";
 @import "./author.css";
-@import "./calendar.css";
+
+/* ========================================
+   ZeroPoint Theme - Global Color Variables
+   Based on hexo-theme-solitude
+   ======================================== */
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-  --container-max-width: 1400px;
-  --container-padding: 1.5rem;
-  --zopt-main: #425aef;
-  --zopt-main-op: #425aef23;
-  --zopt-main-op-deep: #425aef44;
-  --zopt-card-bg: #ffffff;
-  --zopt-card-border: #e3e8f7;
-  --zopt-fontcolor: #363636;
-  --zopt-secondtext: rgba(60, 60, 67, 0.8);
-  --zopt-secondbg: #f7f7fa;
-  --zopt-lighttext: var(--zopt-main);
-  --zopt-white: #ffffff;
+  /* Base Colors */
+  --zopt-white: #fff;
   --zopt-white-op: rgba(255, 255, 255, 0.2);
-  --zopt-none: transparent;
-  --zopt-maskbgdeep: rgba(255, 255, 255, 0.85);
-  --zopt-shadow-main: 0 8px 16px -4px rgba(66, 90, 239, 0.3);
-  --zopt-shadow-border: 0 8px 16px -4px #2c2d300c;
+  --zopt-black: #000;
+  --zopt-black-op: rgba(0, 0, 0, 0.2);
+  --zopt-none: #00000000;
+  --zopt-gray: #999999;
+  --zopt-gray-op: #9999992b;
+  --zopt-cyan: #00bcd4;
+  --zopt-cyan-op: #00bcd42b;
+  --zopt-vip: #e5a80d;
+  --zopt-speed: #57bd6a;
+  
+  /* Theme Colors - Main */
+  --zopt-main: var(--zopt-theme);
+  --zopt-main-op: var(--zopt-theme-op);
+  --zopt-main-op-deep: var(--zopt-theme-op-deep);
+  --zopt-main-op-light: var(--zopt-theme-op-light);
+  --zopt-main-none: var(--zopt-theme-none);
+  
+  /* Shadows */
+  --zopt-shadow-theme: 0 8px 12px -3px var(--zopt-theme-op);
+  --zopt-shadow-blackdeep: 0 2px 16px -3px rgba(0, 0, 0, .15);
+  --zopt-shadow-main: 0 8px 12px -3px var(--zopt-main-op);
+  --zopt-shadow-blue: 0 8px 12px -3px rgba(40, 109, 234, .20);
+  --zopt-shadow-white: 0 8px 12px -3px rgba(255, 255, 255, .20);
+  --zopt-shadow-black: 0 0 12px 4px rgba(0, 0, 0, .05);
+  --zopt-shadow-yellow: 0px 38px 77px -26px rgba(255, 201, 62, .12);
+  --zopt-shadow-red: 0 8px 12px -3px #ee7d7936;
+  --zopt-shadow-green: 0 8px 12px -3px #87ee7936;
+  
+  /* Logo & Branding */
+  --zopt-logo-color: linear-gradient(215deg, #4584ff 0%, #cf0db9 100%);
+  
+  /* Layout */
+  --gap: .5rem;
+  --radius: 12px;
+  --offset: 0px;
+  
+  /* Font */
   --zopt-font-family-mono: 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Mono', 'Droid Sans Mono', 'Source Code Pro', monospace;
+  
+  /* Music Player */
+  --zopt-music: var(--zopt-main);
+}
+
+/* Light Mode (Default) */
+[data-theme=light], :root {
+  --zopt-theme: #425aef;
+  --zopt-theme-op: #425aef23;
+  --zopt-theme-op-deep: #425aefdd;
+  --zopt-theme-op-light: #4259ef0d;
+  --zopt-theme-none: #425aef00;
+  --zopt-blue: #425aef;
+  --zopt-red: #f04a63;
+  --zopt-pink: #ff7c7c;
+  --zopt-green: #57bd6a;
+  --zopt-yellow: #c28b00;
+  --zopt-yellow-op: #d99c001a;
+  --zopt-orange: #e38100;
+  --zopt-purple: #7a60d2;
+  --zopt-fontcolor: #363636;
+  --zopt-reverse: #000;
+  --zopt-maskbg: rgba(255, 255, 255, 0.6);
+  --zopt-maskbgdeep: rgba(255, 255, 255, 0.85);
+  --zopt-hovertext: var(--zopt-main);
+  --zopt-ahoverbg: #f7f7fa;
+  --zopt-lighttext: var(--zopt-main);
+  --zopt-secondtext: rgba(60, 60, 67, 0.8);
+  --zopt-scrollbar: rgba(60, 60, 67, 0.4);
+  --zopt-card-btn-bg: #edf0f7;
+  --zopt-post-blockquote-bg: #fafcff;
+  --zopt-post-tabs-bg: #f2f5f8;
+  --zopt-secondbg: #f7f7f9;
+  --zopt-secondbg-bg: var(--zopt-secondbg);
+  --zopt-shadow-nav: 0 5px 12px -5px rgba(102, 68, 68, 0.05);
+  --zopt-card-bg: #fff;
+  --zopt-card-bg-op: var(--zopt-black-op);
+  --zopt-card-bg-none: rgba(255, 255, 255, 0);
+  --zopt-shadow-lightblack: 0 5px 12px -5px rgba(102, 68, 68, 0.00);
+  --zopt-shadow-light2black: 0 5px 12px -5px rgba(102, 68, 68, 0.00);
+  --zopt-card-border: #e3e8f7;
+  --zopt-shadow-border: 0 8px 16px -4px #2c2d300c;
   --style-border: 1px solid var(--zopt-card-border);
+  --style-border-always: 1px solid var(--zopt-card-border);
   --style-border-hover: 1px solid var(--zopt-main);
+  --style-border-hover-always: 1px solid var(--zopt-main);
+  --style-border-dashed: 1px dashed var(--zopt-theme-op);
+  --style-border-forever: 2px solid var(--zopt-main);
   --style-border-avatar: 5px solid var(--zopt-main);
-  --card: #ffffff;
-  --border: #e3e8f7;
+  --zopt-navbg: var(--zopt-theme-op);
+  --zopt-background: #f7f9fe;
+  
+  /* Compatibility aliases */
+  --card: var(--zopt-card-bg);
+  --border: var(--zopt-card-border);
+  --background: var(--zopt-background);
+  --foreground: var(--zopt-fontcolor);
+}
+
+/* Dark Mode */
+[data-theme=dark] {
+  --zopt-theme: #425aef;
+  --zopt-theme-op: #425aef23;
+  --zopt-theme-op-deep: #425aefdd;
+  --zopt-theme-none: #425aef00;
+  --zopt-blue: #0084ff;
+  --zopt-red: #ff3842;
+  --zopt-pink: #d44040;
+  --zopt-green: #3e9f50;
+  --zopt-purple: #7a60d2;
+  --zopt-yellow: #ffc93e;
+  --zopt-yellow-op: #ffc93e30;
+  --zopt-orange: #ff953e;
+  --zopt-fontcolor: #f7f7fa;
+  --zopt-reverse: #fff;
+  --zopt-maskbg: rgba(0, 0, 0, 0.6);
+  --zopt-maskbgdeep: rgba(0, 0, 0, 0.85);
+  --zopt-hovertext: #0a84ff;
+  --zopt-ahoverbg: #fff;
+  --zopt-lighttext: var(--zopt-theme);
+  --zopt-secondtext: #a1a2b8;
+  --zopt-scrollbar: rgba(200, 200, 223, 0.4);
+  --zopt-card-btn-bg: #30343f;
+  --zopt-post-blockquote-bg: #000;
+  --zopt-post-tabs-bg: #121212;
+  --zopt-secondbg: #30343f;
+  --zopt-secondbg-bg: #21232a;
+  --zopt-shadow-nav: 0 5px 20px 0px rgba(28, 28, 28, 0.4);
+  --zopt-card-bg: #1b1c20;
+  --zopt-card-bg-op: var(--zopt-white-op);
+  --zopt-card-bg-none: #1d1b2600;
+  --zopt-shadow-lightblack: 0 5px 12px -5px rgba(102, 68, 68, 0.0);
+  --zopt-shadow-light2black: 0 5px 12px -5px rgba(102, 68, 68, 0.0);
+  --zopt-card-border: #3d3d3f;
+  --zopt-shadow-border: 0 8px 16px -4px #00000050;
+  --style-border: 1px solid var(--zopt-card-border);
+  --style-border-always: 1px solid var(--zopt-card-border);
+  --style-border-hover: 1px solid var(--zopt-theme);
+  --style-border-hover-always: 1px solid var(--zopt-theme);
+  --style-border-dashed: 1px dashed var(--zopt-theme-op);
+  --style-border-forever: 2px solid var(--zopt-lighttext);
+  --style-border-avatar: 5px solid var(--zopt-main);
+  --zopt-background: #18171d;
+  
+  /* Compatibility aliases */
+  --card: var(--zopt-card-bg);
+  --border: var(--zopt-card-border);
+  --background: var(--zopt-background);
+  --foreground: var(--zopt-fontcolor);
+}
+
+/* Auto Dark Mode based on system preference */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --zopt-theme: #425aef;
+    --zopt-theme-op: #425aef23;
+    --zopt-theme-op-deep: #425aefdd;
+    --zopt-theme-none: #425aef00;
+    --zopt-fontcolor: #f7f7fa;
+    --zopt-card-bg: #1b1c20;
+    --zopt-card-border: #3d3d3f;
+    --zopt-secondtext: #a1a2b8;
+    --zopt-secondbg: #30343f;
+    --zopt-maskbgdeep: rgba(0, 0, 0, 0.85);
+    --zopt-shadow-border: 0 8px 16px -4px #00000050;
+    --zopt-background: #18171d;
+    --card: var(--zopt-card-bg);
+    --border: var(--zopt-card-border);
+    --background: var(--zopt-background);
+    --foreground: var(--zopt-fontcolor);
+  }
 }
 
 @theme inline {
@@ -41,34 +192,18 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #18171d;
-    --foreground: #f7f7fa;
-    --zopt-card-bg: #1b1c20;
-    --zopt-card-border: #3d3d3f;
-    --zopt-fontcolor: #f7f7fa;
-    --zopt-secondtext: #a1a2b8;
-    --zopt-secondbg: #2c2d30;
-    --zopt-maskbgdeep: rgba(0, 0, 0, 0.85);
-    --zopt-shadow-border: 0 8px 16px -4px #00000050;
-    --zopt-white-op: rgba(255, 255, 255, 0.15);
-    --style-border-avatar: 5px solid var(--zopt-main);
-    --card: #1b1c20;
-    --border: #3d3d3f;
-  }
-}
-
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: var(--zopt-background);
+  color: var(--zopt-fontcolor);
   font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.6;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .container {
-  max-width: var(--container-max-width);
+  max-width: 1400px;
   margin: 0 auto;
-  padding: 0 var(--container-padding);
+  padding: 0 1.5rem;
 }
 
 *,
@@ -77,16 +212,36 @@ body {
   box-sizing: border-box;
 }
 
-.nav-scrolled {
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+/* Scrollbar Styles */
+*::-webkit-scrollbar {
+  width: 12px;
+  height: 6px;
 }
 
-@media (prefers-color-scheme: dark) {
-  .nav-scrolled {
-    background: rgba(27, 28, 32, 0.95);
-  }
+*::-webkit-scrollbar-thumb {
+  background: var(--zopt-scrollbar);
+  opacity: 0.5;
+  border-radius: 8px;
+  cursor: pointer;
+  border: 2px solid var(--zopt-background);
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: var(--zopt-lighttext);
+  opacity: 1;
+}
+
+*::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+/* Navigation Styles */
+.nav-scrolled {
+  background: var(--zopt-maskbgdeep);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: var(--zopt-shadow-nav);
+  transition: all 0.3s ease;
 }
 
 .menu-item,
@@ -102,7 +257,7 @@ body {
 .menu-item:hover,
 .back-menu-item:hover {
   background: var(--zopt-lighttext);
-  color: var(--zopt-card-bg);
+  color: var(--zopt-white);
 }
 
 .site-page {
@@ -122,7 +277,7 @@ body {
 
 .site-page:hover {
   background: var(--zopt-lighttext);
-  color: var(--zopt-card-bg) !important;
+  color: var(--zopt-white) !important;
   box-shadow: var(--zopt-shadow-main);
   transform: translateY(-2px) scale(1.02);
 }
@@ -304,7 +459,7 @@ body {
   margin: 1rem 0;
   overflow: hidden;
   cursor: pointer;
-  background: var(--card);
+  background: var(--zopt-card-bg);
   border: var(--style-border);
   border-radius: 12px;
   transition: all 0.3s ease-in-out;
@@ -438,19 +593,19 @@ body {
 
 /* 置顶标签 */
 .sticky-tag {
-  color: #ffffff;
-  background-color: #ff5722;
+  color: var(--zopt-white);
+  background-color: var(--zopt-red);
 }
 
 /* 最新标签 */
 .newest-tag {
-  color: #ffffff;
-  background-color: #10ac84;
+  color: var(--zopt-white);
+  background-color: var(--zopt-green);
 }
 
 /* 分类标签 */
 .category-tag {
-  color: #ffffff;
+  color: var(--zopt-white);
   background-color: var(--zopt-main);
   cursor: pointer;
 }

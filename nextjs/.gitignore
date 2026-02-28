@@ -24,6 +24,7 @@
 .DS_Store
 *.pem
 anheyu-app-frontend-main/
+hexo-theme-solitude-dev/
 
 # debug
 npm-debug.log*

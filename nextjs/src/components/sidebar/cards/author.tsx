@@ -1,71 +1,106 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 interface AuthorConfig {
+  author: {
+    img: string;
+    sticker?: string;
+  };
   description: string;
-  statusImg: string;
-  skills: string[];
-  social: Record<string, { icon: string; link: string }>;
-  userAvatar: string;
-  ownerName: string;
-  subTitle: string;
+  content?: string;
+  state: {
+    morning: string;
+    noon: string;
+    afternoon: string;
+    night: string;
+    goodnight: string;
+  };
+  witty_words?: string[];
+  information: Record<string, string>; // format: "url || icon"
 }
 
 interface AuthorInfoCardProps {
   config?: Partial<AuthorConfig>;
+  ownerName?: string;
 }
 
 const defaultConfig: AuthorConfig = {
-  description: `这有关于<b>产品、设计、开发</b>相关的问题和看法，还有<b>文章翻译</b>和<b>分享</b>。<br/><br/>相信你可以在这里找到对你有用的<b>知识</b>和<b>教程</b>。`,
-  statusImg: "https://upload-bbs.miyoushe.com/upload/2025/08/04/125766904/e3433dc6f4f78a9257060115e339f018_1105042150723011388.png?x-oss-process=image/format,avif",
-  skills: ["集中精力，攻克难关", "今天也要加油哦！", "学习使我快乐", "代码改变世界"],
-  social: {
-    GitHub: {
-      icon: "mdi:github",
-      link: "https://github.com"
-    },
-    Twitter: {
-      icon: "mdi:twitter",
-      link: "https://twitter.com"
-    },
-    Email: {
-      icon: "mdi:email",
-      link: "mailto:example@example.com"
-    }
+  author: {
+    img: "/img/logo.svg",
+    sticker: "https://upload-bbs.miyoushe.com/upload/2025/08/04/125766904/e3433dc6f4f78a9257060115e339f018_1105042150723011388.png?x-oss-process=image/format,avif"
   },
-  userAvatar: "/static/img/avatar.jpg",
-  ownerName: "ZEROPOINT",
-  subTitle: "生活明朗，万物可爱"
+  description: "只有迎风，风筝才能飞得更高。",
+  content: "这有关于<b>产品、设计、开发</b>相关的问题和看法，还有<b>文章翻译</b>和<b>分享</b>。<br/><br/>相信你可以在这里找到对你有用的<b>知识</b>和<b>教程</b>。",
+  state: {
+    morning: "✨ 早上好，新的一天开始了",
+    noon: "🍲 午餐时间",
+    afternoon: "🌞 下午好",
+    night: "早点休息",
+    goodnight: "晚安 😴"
+  },
+  witty_words: [
+    "你可以的",
+    "你一定可以的",
+    "祝你好运，陌生人",
+    "集中精力，攻克难关",
+    "今天也要加油哦！",
+    "学习使我快乐",
+    "代码改变世界"
+  ],
+  information: {
+    Github: "https://github.com || fab fa-github",
+    Email: "mailto:example@example.com || fas fa-envelope"
+  }
 };
 
 function getRandomIndex(length: number): number {
   return length > 0 ? Math.floor(Math.random() * length) : 0;
 }
 
-export default function AuthorInfoCard({ config }: AuthorInfoCardProps) {
-  const mergedConfig = { ...defaultConfig, ...config };
+function getTimeState(): string {
+  const hour = new Date().getHours();
+  if (hour >= 6 && hour < 11) return "morning";
+  if (hour >= 11 && hour < 14) return "noon";
+  if (hour >= 14 && hour < 18) return "afternoon";
+  if (hour >= 18 && hour < 22) return "night";
+  return "goodnight";
+}
+
+export default function AuthorInfoCard({ config, ownerName = "ZEROPOINT" }: AuthorInfoCardProps) {
+  const mergedConfig = useMemo(() => ({
+    ...defaultConfig,
+    ...config,
+    author: { ...defaultConfig.author, ...config?.author },
+    state: { ...defaultConfig.state, ...config?.state }
+  }), [config]);
+
+  const [showSkill, setShowSkill] = useState(false);
+  const [currentGreetingIndex, setCurrentGreetingIndex] = useState(() => getRandomIndex(defaultConfig.witty_words?.length || 0));
+  const [timeState, setTimeState] = useState<string>(() => getTimeState());
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTimeState(getTimeState());
+    }, 60000); // Update every minute
+    return () => clearInterval(timer);
+  }, []);
 
   const greetings = useMemo(
-    () => (mergedConfig.skills?.length > 0 ? mergedConfig.skills : ["集中精力，攻克难关"]),
-    [mergedConfig.skills]
-  );
-
-  const [currentGreetingIndex, setCurrentGreetingIndex] = useState(() => getRandomIndex(greetings.length));
-  const [showSkill, setShowSkill] = useState(false);
-
-  const currentGreeting = useMemo(
-    () => greetings[currentGreetingIndex] || "集中精力，攻克难关",
-    [greetings, currentGreetingIndex]
+    () => mergedConfig.witty_words && mergedConfig.witty_words.length > 0 
+      ? mergedConfig.witty_words 
+      : ["你可以的"],
+    [mergedConfig.witty_words]
   );
 
   const displayGreeting = useMemo(() => {
     if (!showSkill) {
-      return "欢迎光临";
+      return mergedConfig.state[timeState as keyof typeof mergedConfig.state] || "欢迎光临";
     }
-    return currentGreeting;
-  }, [showSkill, currentGreeting]);
+    return greetings[currentGreetingIndex] || "你可以的";
+  }, [showSkill, timeState, greetings, currentGreetingIndex, mergedConfig]);
 
   const changeSayHelloText = () => {
     if (!showSkill) {
@@ -75,6 +110,7 @@ export default function AuthorInfoCard({ config }: AuthorInfoCardProps) {
 
     const totalGreetings = greetings.length;
     if (totalGreetings <= 1) return;
+    
     let newIndex;
     do {
       newIndex = Math.floor(Math.random() * totalGreetings);
@@ -82,81 +118,97 @@ export default function AuthorInfoCard({ config }: AuthorInfoCardProps) {
     setCurrentGreetingIndex(newIndex);
   };
 
-  const renderSocialIcon = (name: string, social: { icon: string; link: string }) => {
-    if (!social.icon) return null;
-    const isImageUrl = social.icon?.startsWith("http://") || social.icon?.startsWith("https://");
-    const isIconify = social.icon?.includes(":");
-
-    if (!isImageUrl && !isIconify) return null;
+  const renderSocialIcon = (name: string, value: string) => {
+    const [url, iconClass] = value.split("||").map(s => s.trim());
+    if (!url || !iconClass) return null;
 
     return (
       <a
         key={name}
-        className="social-icon"
-        href={social.link}
+        className="flex items-center justify-center ml-2.5 w-10 h-10 p-2 text-white/90 bg-white/20 rounded-full cursor-pointer transition-all duration-300 ease-in-out no-underline hover:text-(--zopt-main) hover:bg-(--zopt-secondbg) hover:scale-110 hover:shadow-lg"
+        href={url}
         aria-label={name}
         rel="external nofollow noreferrer"
         target="_blank"
         title={name}
       >
-        {isImageUrl ? (
-          <img src={social.icon} alt={name} className="social-icon-img" width={24} height={24} />
-        ) : (
-          <svg className="social-icon-svg" viewBox="0 0 24 24" fill="currentColor">
-            {name === "GitHub" && (
-              <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-            )}
-            {name === "Twitter" && (
-              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-            )}
-            {name === "Email" && (
-              <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-            )}
-          </svg>
-        )}
+        <i className={iconClass} />
       </a>
     );
   };
 
   return (
-    <div className="card-info">
-      <div className="card-content">
-        <div className="author-info-sayhi" onClick={changeSayHelloText}>
-          {displayGreeting}
+    <div className="card-widget card-info relative overflow-hidden rounded-xl border-0 p-0 w-[283px] group">
+      {/* Animated gradient background */}
+      <div className="absolute inset-0 bg-linear-to-br from-(--zopt-main) via-(--zopt-main-op-deep) to-(--zopt-main) bg-size-[400%_400%] animate-[gradient_15s_ease_infinite]" />
+      
+      <div className="card-content relative w-[283px] h-[320px] p-4 px-5">
+        {/* Top group with greeting */}
+        <div className="card-info-avatar is-center">
+          <div className="top-group">
+            <button
+              id="sayhi"
+              onClick={changeSayHelloText}
+              className="sayhi mx-auto w-fit px-2 py-0.5 text-xs text-white bg-white/20 rounded-xl cursor-pointer select-none transition-all duration-300 hover:text-(--zopt-fontcolor) hover:bg-(--card) hover:scale-110 active:opacity-80 active:scale-95"
+              aria-label="切换问候语"
+            >
+              {displayGreeting}
+            </button>
+          </div>
         </div>
 
-        <div className="author-info-avatar">
-          <img
-            className="avatar-img"
-            src={mergedConfig.userAvatar}
-            alt="avatar"
+        {/* Avatar section */}
+        <div className="avatar relative flex justify-center w-[118px] h-[118px] mx-auto my-11 select-none transition-all duration-300 ease-[cubic-bezier(0.69,0.39,0,1.21)] origin-bottom group-hover:opacity-0 group-hover:scale-0">
+          <Image
+            className="w-full h-full object-cover border-[5px] border-(--zopt-main) rounded-full bg-(--zopt-secondbg) opacity-0 animate-[avatarFadeIn_0.6s_ease_forwards]"
+            src={mergedConfig.author.img}
+            alt={`${ownerName} avatar`}
             width={118}
             height={118}
-            loading="lazy"
+            priority
+            unoptimized={mergedConfig.author.img.startsWith('http')}
           />
-          {mergedConfig.statusImg && (
-            <div className="author-status">
-              <img
-                className="g-status"
-                src={mergedConfig.statusImg}
+          {mergedConfig.author.sticker && (
+            <div className="sticker absolute right-0.5 bottom-0.5 flex items-center justify-center w-[33px] h-[33px] overflow-hidden bg-white rounded-full transition-all duration-300 delay-200 group-hover:opacity-0 group-hover:scale-0">
+              <Image
+                className="sticker-img w-[26px] h-[26px] rounded-none opacity-0 animate-[statusFadeIn_0.6s_ease_0.2s_forwards]"
+                src={mergedConfig.author.sticker}
                 alt="status"
                 width={26}
                 height={26}
-                loading="lazy"
+                unoptimized={mergedConfig.author.sticker.startsWith('http')}
               />
             </div>
           )}
         </div>
 
-        <div className="author-info-description" dangerouslySetInnerHTML={{ __html: mergedConfig.description }} />
+        {/* Description - shows on hover */}
+        <div 
+          className="description absolute top-[50px] left-0 w-full px-5 py-4 text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100 [&_div]:my-2.5 [&_div]:leading-[1.38] [&_div]:text-white/80 [&_div]:text-justify [&_b]:text-white"
+          dangerouslySetInnerHTML={{ __html: mergedConfig.content || mergedConfig.description }}
+        />
 
-        <div className="author-info-bottom-group">
-          <Link href="/about" className="author-info-bottom-group-left">
-            <h1 className="author-info-name">{mergedConfig.ownerName}</h1>
-            <div className="author-info-desc">{mergedConfig.subTitle}</div>
-          </Link>
-          <div className="card-info-social-icons">
-            {Object.entries(mergedConfig.social || {}).map(([name, social]) => renderSocialIcon(name, social))}
+        {/* Bottom info section */}
+        <div className="bottom-group flex items-center justify-between w-full">
+          <span className="left">
+            <Link 
+              href="/about" 
+              className="no-underline transition-transform duration-200 hover:scale-105"
+              aria-label={`关于 ${ownerName}`}
+            >
+              <div className="name mt-0 mb-1 text-xl font-bold leading-none text-white text-left">
+                {ownerName}
+              </div>
+              <div className="desc text-xs leading-none text-white/60">
+                {mergedConfig.description}
+              </div>
+            </Link>
+          </span>
+          
+          <div className="social-icons is-center flex flex-wrap min-w-[100px] m-0">
+            {Object.entries(mergedConfig.information || {}).map(([name, value]) => 
+              renderSocialIcon(name, value)
+            )}
           </div>
         </div>
       </div>

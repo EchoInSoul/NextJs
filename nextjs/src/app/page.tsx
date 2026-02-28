@@ -1,5 +1,5 @@
 import { HomeTop, Category, Essay, Post } from '@/components/sections/home';
-import { Author, Calendar, Info } from '@/components/sidebar/cards';
+import { Author } from '@/components/sidebar/cards';
 import { Footer } from '@/components/layout';
 import { getPosts, getCategories } from '@/lib/getPosts';
 
@@ -13,23 +13,21 @@ export default async function Home() {
   const categories = await getCategories();
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-(--zopt-background) transition-colors duration-300">
       <Essay />
       <HomeTop />
       
-      <section className="w-full max-w-[1400px] mx-auto px-4 md:px-6 mt-4">
+      <section className="w-full max-w-[1400px] mx-auto px-4 md:px-6 mt-4 pb-8">
         <Category categories={categories} />
         
-        <div className="flex gap-4">
+        <div className="flex gap-4 mt-4">
           <div className="flex-1 min-w-0">
             <Post posts={allPosts} singleColumn={false} />
           </div>
           
-          <div className="hidden lg:block w-[320px] shrink-0">
+          <aside className="hidden lg:block w-[283px] shrink-0 space-y-4">
             <Author />
-            <Calendar />
-            <Info />
-          </div>
+          </aside>
         </div>
       </section>
       

@@ -1,5 +1,6 @@
 /* AuthorInfoCard - 用户信息卡片 */
 
+/* Gradient animation for background */
 @keyframes gradient {
   0% {
     background-position: 0% 50%;
@@ -12,102 +13,7 @@
   }
 }
 
-.card-info {
-  position: relative;
-  padding: 0;
-  border: none;
-  border-radius: 12px;
-  overflow: hidden;
-  contain: layout;
-}
-
-.card-info::before {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  content: "";
-  background: linear-gradient(
-    -25deg,
-    var(--zopt-main),
-    var(--zopt-main-op-deep),
-    var(--zopt-main),
-    var(--zopt-main-op-deep)
-  );
-  background-size: 400%;
-  animation: gradient 15s ease infinite;
-  will-change: background-position;
-}
-
-.card-content {
-  position: relative;
-  min-height: 320px;
-  height: 320px;
-  padding: 1rem 1.2rem;
-}
-
-.card-info:hover .author-info-avatar,
-.card-info:hover .author-status {
-  opacity: 0;
-  transform: scale(0);
-}
-
-.card-info:hover .author-info-description {
-  opacity: 1;
-}
-
-/* 问候语/技能标签 */
-.author-info-sayhi {
-  width: fit-content;
-  padding: 2px 8px;
-  margin: auto;
-  font-size: 12px;
-  color: var(--zopt-white);
-  text-align: left;
-  cursor: pointer;
-  user-select: none;
-  background: var(--zopt-white-op);
-  border-radius: 12px;
-  transition: 0.3s;
-}
-
-.author-info-sayhi:hover {
-  color: var(--zopt-fontcolor);
-  background: var(--card);
-  transform: scale(1.15);
-}
-
-.author-info-sayhi:active {
-  opacity: 0.8;
-  transform: scale(0.8);
-}
-
-/* 头像区域 */
-.author-info-avatar {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  width: 118px;
-  height: 118px;
-  margin: 45px auto;
-  user-select: none;
-  transition: cubic-bezier(0.69, 0.39, 0, 1.21) 0.3s;
-  transform-origin: bottom;
-}
-
-.avatar-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border: var(--style-border-avatar);
-  border-radius: 50%;
-  opacity: 0;
-  background: var(--zopt-secondbg);
-  transition: opacity 0.6s ease;
-  animation: avatarFadeIn 0.6s ease forwards;
-}
-
+/* Avatar fade in animation */
 @keyframes avatarFadeIn {
   from {
     opacity: 0;
@@ -117,31 +23,7 @@
   }
 }
 
-.author-status {
-  position: absolute;
-  right: 2px;
-  bottom: 2px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 33px;
-  height: 33px;
-  overflow: hidden;
-  background-color: var(--zopt-white);
-  border-radius: 50%;
-  transition: 0.3s 0.2s;
-  transform: scale(1);
-}
-
-.g-status {
-  width: 26px;
-  height: 26px;
-  border-radius: 0;
-  opacity: 0;
-  transition: opacity 0.6s ease;
-  animation: statusFadeIn 0.6s ease 0.2s forwards;
-}
-
+/* Status icon fade in animation */
 @keyframes statusFadeIn {
   from {
     opacity: 0;
@@ -151,103 +33,61 @@
   }
 }
 
-/* 描述信息 */
-.author-info-description {
-  position: absolute;
-  top: 50px;
-  left: 0;
-  width: 100%;
-  padding: 1rem 1.2rem;
-  color: var(--zopt-white);
-  opacity: 0;
-  transition: 0.3s;
-}
-
-.author-info-description div {
-  margin: 0.6rem 0;
-  line-height: 1.38;
-  color: rgb(255 255 255 / 80%);
-  text-align: justify;
-}
-
-.author-info-description b {
-  color: #fff;
-}
-
-/* 底部信息 */
-.author-info-bottom-group {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+/* Card widget base styles */
+.card-widget.card-info {
+  contain: layout;
   width: 100%;
 }
 
-.author-info-bottom-group-left {
-  text-decoration: none;
+.card-widget.card-info .card-content {
+  width: 100%;
+  height: 320px;
 }
 
-.author-info-name {
-  margin-top: 0;
-  margin-bottom: 5px;
-  font-size: 20px;
-  font-weight: 700;
+/* Ensure Font Awesome icons are displayed */
+.card-info .social-icons i {
+  font-size: 1.2em;
   line-height: 1;
-  color: var(--zopt-white);
-  text-align: left;
 }
 
-.author-info-desc {
-  font-size: 12px;
-  line-height: 1;
-  color: var(--zopt-white);
-  opacity: 0.6;
+/* Description styling */
+.card-info .description {
+  font-size: 0.875rem;
+  line-height: 1.6;
 }
 
-/* 社交图标 */
-.card-info-social-icons {
-  display: flex;
-  flex-flow: row wrap;
-  min-width: 100px;
-  margin: 0;
-  cursor: pointer;
-}
-
-.social-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 0 0 10px;
-  width: 40px;
-  height: 40px;
-  padding: 8px;
-  font-size: 1.4em;
-  color: var(--zopt-fontcolor);
-  background: var(--zopt-white-op);
-  border-radius: 32px;
-  cursor: pointer;
-  transition: all 0.3s ease 0s;
-  text-decoration: none;
-}
-
-.social-icon:hover {
-  color: var(--zopt-main);
-  background: var(--zopt-secondbg);
-  box-shadow: none;
-  transform: scale(1.1);
-}
-
-.social-icon:hover .social-iconify {
-  color: var(--zopt-main);
-}
-
-.social-icon-img {
-  width: 24px;
-  height: 24px;
-  object-fit: contain;
-}
-
-.social-icon-svg {
-  width: 20px;
-  height: 20px;
-  color: var(--zopt-white);
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .card-widget.card-info {
+    width: 100%;
+    max-width: 283px;
+  }
+  
+  .card-info .card-content {
+    width: 100%;
+    min-height: 280px;
+    height: 280px;
+  }
+  
+  .card-info .avatar {
+    width: 100px;
+    height: 100px;
+    margin: 35px auto;
+  }
+  
+  .card-info .sticker {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .card-info .sticker-img {
+    width: 22px;
+    height: 22px;
+  }
+  
+  .card-info .social-icons a {
+    width: 36px;
+    height: 36px;
+    margin-left: 8px;
+  }
 }
