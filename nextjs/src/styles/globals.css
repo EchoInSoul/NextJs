@@ -4,6 +4,10 @@
 @import "./footer.css";
 @import "./info.css";
 @import "./author.css";
+@import "./toc.css";
+@import "./newest-post.css";
+@import "./newest-comments.css";
+@import "./aside.css";
 
 /* ========================================
    ZeroPoint Theme - Global Color Variables

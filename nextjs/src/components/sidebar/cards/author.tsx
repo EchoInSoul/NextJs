@@ -125,7 +125,7 @@ export default function AuthorInfoCard({ config, ownerName = "ZEROPOINT" }: Auth
     return (
       <a
         key={name}
-        className="flex items-center justify-center ml-2.5 w-10 h-10 p-2 text-white/90 bg-white/20 rounded-full cursor-pointer transition-all duration-300 ease-in-out no-underline hover:text-(--zopt-main) hover:bg-(--zopt-secondbg) hover:scale-110 hover:shadow-lg"
+        className="flex items-center justify-center ml-2.5 w-10 h-10 p-2 text-white/90 bg-white/20 rounded-full cursor-pointer transition-all duration-300 ease-in-out no-underline hover:text-[var(--zopt-main)] hover:bg-[var(--zopt-secondbg)] hover:scale-110 hover:shadow-lg"
         href={url}
         aria-label={name}
         rel="external nofollow noreferrer"
@@ -139,8 +139,7 @@ export default function AuthorInfoCard({ config, ownerName = "ZEROPOINT" }: Auth
 
   return (
     <div className="card-widget card-info relative overflow-hidden rounded-xl border-0 p-0 w-[283px] group">
-      {/* Animated gradient background */}
-      <div className="absolute inset-0 bg-linear-to-br from-(--zopt-main) via-(--zopt-main-op-deep) to-(--zopt-main) bg-size-[400%_400%] animate-[gradient_15s_ease_infinite]" />
+      <div className="absolute inset-0 bg-gradient-to-br from-[var(--zopt-main)] via-[var(--zopt-main-op-deep)] to-[var(--zopt-main)] bg-[length:400%_400%] animate-[gradient_15s_ease_infinite]" />
       
       <div className="card-content relative w-[283px] h-[320px] p-4 px-5">
         {/* Top group with greeting */}
@@ -149,7 +148,7 @@ export default function AuthorInfoCard({ config, ownerName = "ZEROPOINT" }: Auth
             <button
               id="sayhi"
               onClick={changeSayHelloText}
-              className="sayhi mx-auto w-fit px-2 py-0.5 text-xs text-white bg-white/20 rounded-xl cursor-pointer select-none transition-all duration-300 hover:text-(--zopt-fontcolor) hover:bg-(--card) hover:scale-110 active:opacity-80 active:scale-95"
+              className="sayhi mx-auto w-fit px-2 py-0.5 text-xs text-white bg-white/20 rounded-xl cursor-pointer select-none transition-all duration-300 hover:text-[var(--zopt-fontcolor)] hover:bg-[var(--card)] hover:scale-110 active:opacity-80 active:scale-95"
               aria-label="切换问候语"
             >
               {displayGreeting}
@@ -160,7 +159,7 @@ export default function AuthorInfoCard({ config, ownerName = "ZEROPOINT" }: Auth
         {/* Avatar section */}
         <div className="avatar relative flex justify-center w-[118px] h-[118px] mx-auto my-11 select-none transition-all duration-300 ease-[cubic-bezier(0.69,0.39,0,1.21)] origin-bottom group-hover:opacity-0 group-hover:scale-0">
           <Image
-            className="w-full h-full object-cover border-[5px] border-(--zopt-main) rounded-full bg-(--zopt-secondbg) opacity-0 animate-[avatarFadeIn_0.6s_ease_forwards]"
+            className="w-full h-full object-cover border-[5px] border-[var(--zopt-main)] rounded-full bg-[var(--zopt-secondbg)] opacity-0 animate-[avatarFadeIn_0.6s_ease_forwards]"
             src={mergedConfig.author.img}
             alt={`${ownerName} avatar`}
             width={118}

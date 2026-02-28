@@ -1,0 +1,139 @@
+.card-widget.card-toc {
+  position: relative;
+  padding: 0.5rem 1rem;
+  background: var(--zopt-card-bg);
+  border: var(--style-border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: all 0.3s;
+  box-shadow: var(--zopt-shadow-black);
+  user-select: none;
+}
+
+.card-widget.card-toc:hover {
+  box-shadow: var(--zopt-shadow-border);
+}
+
+.card-toc .item-headline {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--zopt-fontcolor);
+}
+
+.card-toc .item-headline i {
+  color: var(--zopt-main);
+  font-size: 16px;
+}
+
+.toc-content {
+  max-height: calc(100vh - 300px);
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--zopt-scrollbar) transparent;
+}
+
+.toc-content::-webkit-scrollbar {
+  width: 4px;
+}
+
+.toc-content::-webkit-scrollbar-thumb {
+  background: var(--zopt-scrollbar);
+  border-radius: 4px;
+}
+
+.toc-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.toc-item-wrapper {
+  margin: 0;
+  padding: 0;
+}
+
+.toc-item {
+  display: block;
+  padding: 6px 12px;
+  font-size: 14px;
+  color: var(--zopt-secondtext);
+  text-decoration: none;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  border-left: 2px solid transparent;
+  margin-left: 0;
+}
+
+.toc-item:hover {
+  color: var(--zopt-main);
+  background: var(--zopt-main-op);
+  border-left-color: var(--zopt-main);
+}
+
+.toc-item.active {
+  color: var(--zopt-main);
+  background: var(--zopt-main-op);
+  border-left-color: var(--zopt-main);
+  font-weight: 500;
+}
+
+.toc-text {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.toc-children {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  padding-left: 12px;
+}
+
+.toc-level-2 {
+  padding-left: 16px;
+}
+
+.toc-level-3 {
+  padding-left: 28px;
+  font-size: 13px;
+}
+
+.toc-level-4 {
+  padding-left: 40px;
+  font-size: 12px;
+}
+
+.toc-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 0;
+  color: var(--zopt-secondtext);
+  font-size: 14px;
+}
+
+@media (max-width: 768px) {
+  .card-toc .toc-content {
+    max-height: 300px;
+  }
+  
+  .toc-item {
+    font-size: 13px;
+    padding: 5px 10px;
+  }
+  
+  .toc-level-2 {
+    padding-left: 12px;
+  }
+  
+  .toc-level-3 {
+    padding-left: 24px;
+  }
+}

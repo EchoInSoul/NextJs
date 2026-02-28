@@ -1,7 +1,8 @@
 import { HomeTop, Category, Essay, Post } from '@/components/sections/home';
-import { Author } from '@/components/sidebar/cards';
+import { Author, NewestPost, NewestComments } from '@/components/sidebar/cards';
 import { Footer } from '@/components/layout';
 import { getPosts, getCategories } from '@/lib/getPosts';
+import { getComments, getCommentConfig } from '@/lib/getComments';
 
 export const metadata = {
   title: '我的博客 - 分享技术、思考与生活',
@@ -11,6 +12,10 @@ export const metadata = {
 export default async function Home() {
   const allPosts = await getPosts();
   const categories = await getCategories();
+  
+  // 动态获取最新评论
+  const commentConfig = getCommentConfig();
+  const recentComments = await getComments(commentConfig, 3);
 
   return (
     <div className="min-h-screen bg-(--zopt-background) transition-colors duration-300">
@@ -27,6 +32,8 @@ export default async function Home() {
           
           <aside className="hidden lg:block w-[283px] shrink-0 space-y-4">
             <Author />
+            <NewestPost posts={allPosts} maxItems={5} />
+            <NewestComments comments={recentComments} maxItems={3} />
           </aside>
         </div>
       </section>

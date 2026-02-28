@@ -26,7 +26,7 @@ const defaultCategories = [
 
 const skills = [
   { name: 'HTML5', color: '#E34F26', icon: 'https://simpleicons.org/icons/html5.svg' },
-  { name: 'CSS3', color: '#1572B6', icon: 'https://simpleicons.org/icons/css3.svg' },
+  { name: 'CSS3', color: '#1572B6', icon: 'https://simpleicons.org/icons/css.svg' },
   { name: 'JavaScript', color: '#F7DF1E', icon: 'https://simpleicons.org/icons/javascript.svg' },
   { name: 'TypeScript', color: '#3178C6', icon: 'https://simpleicons.org/icons/typescript.svg' },
   { name: 'React', color: '#61DAFB', icon: 'https://simpleicons.org/icons/react.svg' },

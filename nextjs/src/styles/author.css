@@ -1,6 +1,5 @@
 /* AuthorInfoCard - 用户信息卡片 */
 
-/* Gradient animation for background */
 @keyframes gradient {
   0% {
     background-position: 0% 50%;
@@ -13,7 +12,6 @@
   }
 }
 
-/* Avatar fade in animation */
 @keyframes avatarFadeIn {
   from {
     opacity: 0;
@@ -23,7 +21,6 @@
   }
 }
 
-/* Status icon fade in animation */
 @keyframes statusFadeIn {
   from {
     opacity: 0;
@@ -33,37 +30,175 @@
   }
 }
 
-/* Card widget base styles */
 .card-widget.card-info {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  border: none;
+  padding: 0;
+  width: 283px;
+  background: transparent;
   contain: layout;
-  width: 100%;
 }
 
 .card-widget.card-info .card-content {
-  width: 100%;
+  position: relative;
+  width: 283px;
   height: 320px;
+  padding: 1rem 1.25rem;
 }
 
-/* Ensure Font Awesome icons are displayed */
+.card-info .card-info-avatar {
+  display: flex;
+  justify-content: center;
+}
+
+.card-info .avatar {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  width: 118px;
+  height: 118px;
+  margin: 44px auto;
+  user-select: none;
+  transition: all 0.3s cubic-bezier(0.69, 0.39, 0, 1.21);
+  transform-origin: bottom;
+}
+
+.card-info .avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border: 5px solid var(--zopt-main);
+  border-radius: 50%;
+  background: var(--zopt-secondbg);
+}
+
+.card-info .sticker {
+  position: absolute;
+  right: 2px;
+  bottom: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 33px;
+  height: 33px;
+  overflow: hidden;
+  background: white;
+  border-radius: 50%;
+  transition: all 0.3s 0.2s;
+}
+
+.card-info .sticker-img {
+  width: 26px;
+  height: 26px;
+  border-radius: 0;
+}
+
+.card-info .description {
+  position: absolute;
+  top: 50px;
+  left: 0;
+  width: 100%;
+  padding: 1rem 1.25rem;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: white;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.card-info .description div {
+  margin: 0.625rem 0;
+  line-height: 1.38;
+  color: rgba(255, 255, 255, 0.8);
+  text-align: justify;
+}
+
+.card-info .description b {
+  color: white;
+}
+
+.card-widget.card-info:hover .avatar {
+  opacity: 0;
+  transform: scale(0);
+}
+
+.card-widget.card-info:hover .description {
+  opacity: 1;
+}
+
+.card-widget.card-info:hover .sticker {
+  opacity: 0;
+  transform: scale(0);
+}
+
+.card-info .bottom-group {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.card-info .bottom-group .left .name {
+  margin: 0 0 0.25rem 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1;
+  color: white;
+  text-align: left;
+}
+
+.card-info .bottom-group .left .desc {
+  font-size: 0.75rem;
+  line-height: 1;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.card-info .social-icons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  min-width: 100px;
+  margin: 0;
+}
+
+.card-info .social-icons a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0.5rem;
+  margin-left: 0.625rem;
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  text-decoration: none;
+}
+
+.card-info .social-icons a:hover {
+  color: var(--zopt-main);
+  background: var(--zopt-secondbg);
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
 .card-info .social-icons i {
   font-size: 1.2em;
   line-height: 1;
 }
 
-/* Description styling */
-.card-info .description {
-  font-size: 0.875rem;
-  line-height: 1.6;
-}
-
-/* Responsive adjustments */
 @media (max-width: 768px) {
   .card-widget.card-info {
     width: 100%;
     max-width: 283px;
   }
   
-  .card-info .card-content {
+  .card-widget.card-info .card-content {
     width: 100%;
     min-height: 280px;
     height: 280px;
