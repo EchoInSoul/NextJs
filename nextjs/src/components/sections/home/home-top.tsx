@@ -2,16 +2,17 @@
 
 import { useMemo } from "react";
 import Link from "next/link";
-import TodayCard from "./today-card";
+import Image from "next/image";
+import { Today } from "@/components/sidebar/cards";
 
 const HOME_TOP = {
-  title: "生活明朗",
-  subTitle: "万物可爱。",
-  siteText: "ZEROPOINT",
+  title: "",
+  subTitle: "",
+  siteText: "",
   category: [
-    { name: "语文", path: "/categories/语文", background: "linear-gradient(to right, #358bff, #15c6ff)" },
-    { name: "数学", path: "/categories/数学", background: "linear-gradient(to right, #ff9a9e, #fad0c4)" },
-    { name: "英语", path: "/categories/英语", background: "linear-gradient(to right, #11998e, #38ef7d)" },
+    { name: "前端", path: "/categories/frontend", background: "linear-gradient(to right, #358bff, #15c6ff)" },
+    { name: "后端", path: "/categories/backend", background: "linear-gradient(to right, #ff9a9e, #fad0c4)" },
+    { name: "开发", path: "/categories/devp", background: "linear-gradient(to right, #11998e, #38ef7d)" },
   ]
 };
 
@@ -35,7 +36,7 @@ export default function HomeTop() {
   }, []);
 
   const creativityPairs = useMemo(() => {
-    const pairs: Array<[(typeof creativityList)[0], (typeof creativityList)[0]]> = [];
+    const pairs: Array<[typeof creativityList[0], typeof creativityList[0]]> = [];
     for (let i = 0; i < creativityList.length; i += 2) {
       if (creativityList[i + 1]) {
         pairs.push([creativityList[i], creativityList[i + 1]]);
@@ -59,23 +60,25 @@ export default function HomeTop() {
               {creativityPairs.map((pair, index) => (
                 <div key={index} className="tags-group-icon-pair shrink-0 ml-4">
                   <div className="tags-group-icon flex items-center justify-center w-[120px] h-[120px] rounded-[30px] shadow-[0_2px_16px_-3px_rgba(0,0,0,0.15)]" style={{ background: pair[0].color }}>
-                    <img
+                    <Image
                       src={pair[0].icon}
                       alt={pair[0].name}
                       title={pair[0].name}
                       width={60}
                       height={60}
                       className="w-[60px] h-[60px] object-contain filter brightness-0 invert"
+                      unoptimized
                     />
                   </div>
                   <div className="tags-group-icon flex items-center justify-center w-[120px] h-[120px] mt-4 rounded-[30px] shadow-[0_2px_16px_-3px_rgba(0,0,0,0.15)] -translate-x-[60px]" style={{ background: pair[1].color }}>
-                    <img
+                    <Image
                       src={pair[1].icon}
                       alt={pair[1].name}
                       title={pair[1].name}
                       width={60}
                       height={60}
                       className="w-[60px] h-[60px] object-contain filter brightness-0 invert"
+                      unoptimized
                     />
                   </div>
                 </div>
@@ -85,30 +88,40 @@ export default function HomeTop() {
 
           <Link
             href="/posts/random"
-            className="random-hover absolute top-0 left-0 z-[3] flex flex-col items-start justify-center w-full h-full pl-8 text-white bg-[rgba(66,90,239,0.9)] backdrop-blur-[15px] opacity-0 transition-all duration-500 ease-[cubic-bezier(0.71,0.15,0.16,1.15)] group-hover:opacity-100 group-hover:pl-12 cursor-pointer overflow-hidden"
+            className="random-hover absolute top-0 left-0 z-[3] flex items-center justify-start w-full h-full pl-8 pr-8 text-white bg-[rgba(66,90,239,0.9)] backdrop-blur-[15px] opacity-0 transition-all duration-500 ease-[cubic-bezier(0.71,0.15,0.16,1.15)] group-hover:opacity-100 group-hover:pl-12 cursor-pointer"
           >
-            <div className="banner-text flex items-center text-[2.5rem] md:text-[3.5rem] font-bold flex-shrink-0">
+            <div className="banner-text text-[2.5rem] md:text-[3.5rem] font-bold">
               随便逛逛
-              <div className="text-[3rem] md:text-[4.5rem] ml-2 md:ml-4">
-                <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="1em" height="1em" viewBox="0 0 448 512">
-                  <path fill="currentColor" d="M438.6 278.6c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path>
-                </svg>
-              </div>
             </div>
           </Link>
         </div>
 
         <div className="category-group flex gap-3 flex-1 min-h-0">
-          {HOME_TOP.category.map((item) => (
-            <div key={item.name} className="category-item relative flex-1 min-h-0 transition-all duration-300 hover:scale-[1.02] group">
+          {HOME_TOP.category.map((item, index) => (
+            <div 
+              key={item.name} 
+              className="category-item relative flex-1 min-h-0 group"
+              style={{ 
+                animation: `categoryFadeIn 0.6s ease-out ${index * 0.1}s both`
+              }}
+            >
               <Link
                 href={item.path}
-                className="category-button flex items-center justify-start px-6 text-white no-underline rounded-xl w-full h-full overflow-hidden shadow-md"
+                className="category-button relative flex items-center justify-center px-6 text-white no-underline rounded-xl w-full h-full overflow-hidden shadow-[0_4px_12px_rgba(0,0,0,0.15)] transition-all duration-500 ease-out
+                  hover:shadow-[0_12px_24px_rgba(0,0,0,0.25)] hover:-translate-y-1 hover:scale-[1.02]
+                  before:absolute before:inset-0 before:bg-gradient-to-br before:from-white/20 before:to-transparent before:opacity-0 before:transition-opacity before:duration-500
+                  hover:before:opacity-100
+                  after:absolute after:top-0 after:left-[-100%] after:w-full after:h-full after:bg-gradient-to-r after:from-transparent after:via-white/30 after:to-transparent
+                  hover:after:left-[100%] after:transition-all after:duration-700 after:ease-out"
                 style={{ background: item.background }}
               >
-                <span className="category-button-text text-xl font-bold whitespace-nowrap">
+                <span className="category-button-text relative z-10 text-xl font-bold whitespace-nowrap transition-all duration-300 group-hover:scale-110 group-hover:tracking-wider">
                   {item.name}
                 </span>
+                
+                {/* 装饰性圆圈 */}
+                <div className="absolute -right-4 -bottom-4 w-20 h-20 bg-white/10 rounded-full transition-all duration-500 group-hover:scale-150 group-hover:bg-white/20"></div>
+                <div className="absolute -left-2 -top-2 w-12 h-12 bg-white/10 rounded-full transition-all duration-500 group-hover:scale-125 group-hover:bg-white/20"></div>
               </Link>
             </div>
           ))}
@@ -116,7 +129,7 @@ export default function HomeTop() {
       </div>
 
       <div className="right-section flex flex-col w-1/2 h-[340px] gap-3">
-        <TodayCard />
+        <Today />
       </div>
     </div>
   );

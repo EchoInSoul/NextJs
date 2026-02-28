@@ -1,6 +1,6 @@
 /* WebInfoCard - 网站信息卡片 */
 
-.cardWidget {
+.info-card-widget {
   position: relative;
   padding: 1rem;
   margin-top: 1rem;
@@ -11,19 +11,19 @@
   transition: all 0.3s ease;
 }
 
-.cardWidget:hover {
+.info-card-widget:hover {
   box-shadow: var(--zopt-shadow-border);
 }
 
 /* 标签云 */
-.cardTagCloud {
+.card-tag-cloud {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
   margin-bottom: 0.5rem;
 }
 
-.tagLink {
+.tag-link {
   display: inline-flex;
   align-items: center;
   padding: 4px 10px;
@@ -36,14 +36,14 @@
   cursor: pointer;
 }
 
-.tagLink:hover {
+.tag-link:hover {
   background: var(--zopt-main);
   color: var(--zopt-white);
   transform: translateY(-2px);
   box-shadow: 0 4px 8px var(--zopt-main-op);
 }
 
-.tagLink sup {
+.tag-link sup {
   margin-left: 4px;
   font-size: 10px;
   font-weight: 700;
@@ -51,12 +51,12 @@
   color: inherit;
 }
 
-.tagLink:hover sup {
+.tag-link:hover sup {
   opacity: 1;
 }
 
 /* 分隔线 */
-.divider {
+.info-divider {
   margin: 1rem 0;
   border: none;
   border-top: 1px solid var(--border);
@@ -69,7 +69,7 @@
   gap: 0.75rem;
 }
 
-.webinfoItem {
+.webinfo-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -77,41 +77,41 @@
   transition: all 0.3s ease;
 }
 
-.webinfoItem:hover {
+.webinfo-item:hover {
   background: var(--zopt-main-op);
   margin: 0 -0.5rem;
   padding: 0.25rem 0.5rem;
   border-radius: 8px;
 }
 
-.itemName {
+.item-name {
   font-size: 13px;
   color: var(--zopt-secondtext);
   font-weight: 500;
 }
 
-.itemCount {
+.item-count {
   font-size: 13px;
   font-weight: 600;
   color: var(--zopt-fontcolor);
 }
 
-.webinfoItem:hover .itemName {
+.webinfo-item:hover .item-name {
   color: var(--zopt-fontcolor);
 }
 
-.webinfoItem:hover .itemCount {
+.webinfo-item:hover .item-count {
   color: var(--zopt-main);
 }
 
 @media (max-width: 768px) {
-  .tagLink {
+  .tag-link {
     font-size: 11px;
     padding: 3px 8px;
   }
   
-  .itemName,
-  .itemCount {
+  .item-name,
+  .item-count {
     font-size: 12px;
   }
 }

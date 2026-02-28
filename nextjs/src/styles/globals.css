@@ -1,5 +1,11 @@
 @import "tailwindcss";
 
+/* Component Styles */
+@import "./footer.css";
+@import "./info.css";
+@import "./author.css";
+@import "./calendar.css";
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -177,6 +183,17 @@ body {
   }
   100% {
     transform: translateX(-50%);
+  }
+}
+
+@keyframes categoryFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
   }
 }
 

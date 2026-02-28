@@ -1,8 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
-import styles from "./footer.module.css";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -59,17 +57,17 @@ export default function Footer() {
   ];
 
   return (
-    <footer className={styles.footerContainer}>
-      <div className={styles.footerWrap}>
-        <div className={styles.footerLinkGrid}>
+    <footer className="footer-container">
+      <div className="footer-wrap">
+        <div className="footer-link-grid">
           {footerGroups.map((group, index) => (
-            <div key={index} className={styles.footerGroup}>
-              <div className={styles.footerTitleGroup}>
-                <div className={styles.footerTitle}>{group.title}</div>
+            <div key={index} className="footer-group">
+              <div className="footer-title-group">
+                <div className="footer-title">{group.title}</div>
                 {group.title === "友链" && (
                   <button
                     type="button"
-                    className={styles.randomFriendsBtn}
+                    className="random-friends-btn"
                     aria-label="换一批友情链接"
                     title="换一批友情链接"
                     onClick={handleRefresh}
@@ -86,11 +84,11 @@ export default function Footer() {
                   </button>
                 )}
               </div>
-              <div className={styles.footerLinks}>
+              <div className="footer-links">
                 {group.links.map((link, linkIndex) => (
                   <a
                     key={linkIndex}
-                    className={styles.footerItem}
+                    className="footer-item"
                     href={link.href}
                     title={link.title}
                     target={link.external ? "_blank" : undefined}
@@ -105,34 +103,34 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className={styles.footerBottomBar}>
-        <div className={styles.barContent}>
-          <div className={styles.barLeft}>
-            <div className={styles.copyrightInfo}>
+      <div className="footer-bottom-bar">
+        <div className="bar-content">
+          <div className="bar-left">
+            <div className="copyright-info">
               ©2020 - {currentYear} By{" "}
-              <a className={styles.barLink} href="/about" target="_blank" rel="noopener">
+              <a className="bar-link" href="/about" target="_blank" rel="noopener">
                 ZEROPOINT
               </a>
             </div>
-            <div className={styles.recordInfo}>
-              <a className={styles.recordLink} href="https://beian.miit.gov.cn/" target="_blank" rel="noopener">
+            <div className="record-info">
+              <a className="record-link" href="https://beian.miit.gov.cn/" target="_blank" rel="noopener">
                 备案号
               </a>
-              <a className={styles.uptimeStatusIndicator} href="/status" target="_blank" rel="noopener">
-                <span className={styles.statusDot}></span>
-                <span className={styles.statusText}>所有业务正常</span>
+              <a className="uptime-status-indicator" href="/status" target="_blank" rel="noopener">
+                <span className="status-dot"></span>
+                <span className="status-text">所有业务正常</span>
               </a>
             </div>
           </div>
-          <div className={styles.barRight}>
-            <a className={styles.barLink} href="/about#post-comment">留言</a>
-            <a className={styles.barLink} href="https://github.com" target="_blank" rel="noopener external nofollow noreferrer">
+          <div className="bar-right">
+            <a className="bar-link" href="/about#post-comment">留言</a>
+            <a className="bar-link" href="https://github.com" target="_blank" rel="noopener external nofollow noreferrer">
               框架
             </a>
-            <a className={styles.barLink} href="/" target="_blank" rel="noopener external nofollow noreferrer">
+            <a className="bar-link" href="/" target="_blank" rel="noopener external nofollow noreferrer">
               主页
             </a>
-            <a className={styles.ccLink} href="/copyright" aria-label="CC BY-NC-ND 4.0 协议" target="_blank" rel="noopener">
+            <a className="cc-link" href="/copyright" aria-label="CC BY-NC-ND 4.0 协议" target="_blank" rel="noopener">
               <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
                 <path fill="currentColor" d="M16.288 9.428A4.999 4.999 0 0 0 7 12a4.999 4.999 0 0 0 9.288 2.572l-1.715-1.028A3 3 0 1 1 12 9c1.093 0 2.05.584 2.573 1.457zM22 12c0-5.52-4.48-10-10-10S2 6.48 2 12s4.48 10 10 10s10-4.48 10-10M4 12c0-4.42 3.58-8 8-8s8 3.58 8 8s-3.58 8-8 8s-8-3.58-8-8"/>
               </svg>

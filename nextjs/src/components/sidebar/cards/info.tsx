@@ -2,7 +2,6 @@
 
 import { useMemo } from "react";
 import Link from "next/link";
-import styles from "./web-info-card.module.css";
 
 interface WebInfoCardProps {
   tags?: Array<{ name: string; count: number }>;
@@ -43,33 +42,33 @@ export default function WebInfoCard({
   }, [lastUpdate]);
 
   return (
-    <div className={styles.cardWidget}>
-      <div className={styles.cardTagCloud}>
+    <div className="info-card-widget">
+      <div className="card-tag-cloud">
         {tags.map((tag, index) => (
-          <Link key={index} href={`/tags/${encodeURIComponent(tag.name)}`} className={styles.tagLink}>
+          <Link key={index} href={`/tags/${encodeURIComponent(tag.name)}`} className="tag-link">
             {tag.name}<sup>{tag.count}</sup>
           </Link>
         ))}
       </div>
       
-      <hr className={styles.divider} />
+      <hr className="info-divider" />
       
-      <div className={styles.webinfo}>
-        <div className={styles.webinfoItem}>
-          <div className={styles.itemName}>文章总数 :</div>
-          <div className={styles.itemCount}>{postsCount}</div>
+      <div className="webinfo">
+        <div className="webinfo-item">
+          <div className="item-name">文章总数 :</div>
+          <div className="item-count">{postsCount}</div>
         </div>
-        <div className={styles.webinfoItem}>
-          <div className={styles.itemName}>建站天数 :</div>
-          <div className={styles.itemCount}>{siteDays} 天</div>
+        <div className="webinfo-item">
+          <div className="item-name">建站天数 :</div>
+          <div className="item-count">{siteDays} 天</div>
         </div>
-        <div className={styles.webinfoItem}>
-          <div className={styles.itemName}>最后更新 :</div>
-          <time className={styles.itemCount}>{lastUpdateText}</time>
+        <div className="webinfo-item">
+          <div className="item-name">最后更新 :</div>
+          <time className="item-count">{lastUpdateText}</time>
         </div>
-        <div className={styles.webinfoItem}>
-          <div className={styles.itemName}>全站字数 :</div>
-          <div className={styles.itemCount}>{totalWords}</div>
+        <div className="webinfo-item">
+          <div className="item-name">全站字数 :</div>
+          <div className="item-count">{totalWords}</div>
         </div>
       </div>
     </div>

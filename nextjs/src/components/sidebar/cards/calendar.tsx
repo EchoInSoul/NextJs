@@ -1,7 +1,6 @@
 "use client";
 
 import { useMemo } from "react";
-import styles from "./calendar-card.module.css";
 
 export default function CalendarCard() {
   const calendarData = useMemo(() => {
@@ -34,28 +33,28 @@ export default function CalendarCard() {
   const weekHeaders = ["日", "一", "二", "三", "四", "五", "六"];
 
   return (
-    <div className={styles.cardWidget}>
-      <div className={styles.itemContent}>
-        <div className={styles.calendarAreaLeft}>
-          <div className={styles.calendarWeek}>{calendarData.weekInfo}</div>
-          <div className={styles.calendarDate}>{calendarData.date}</div>
-          <div className={styles.calendarMonth}>{calendarData.monthName}</div>
-          <div className={styles.calendarSolar}>{calendarData.solar}</div>
-          <div className={styles.calendarLunar}>{calendarData.lunar}</div>
+    <div className="calendar-card-widget">
+      <div className="calendar-item-content">
+        <div className="calendar-area-left">
+          <div className="calendar-week">{calendarData.weekInfo}</div>
+          <div className="calendar-date">{calendarData.date}</div>
+          <div className="calendar-month">{calendarData.monthName}</div>
+          <div className="calendar-solar">{calendarData.solar}</div>
+          <div className="calendar-lunar">{calendarData.lunar}</div>
         </div>
-        <div className={styles.calendarAreaRight}>
-          <div className={styles.calendarHeader}>
+        <div className="calendar-area-right">
+          <div className="calendar-header">
             {weekHeaders.map((header, index) => (
-              <div key={index} className={styles.calendarHeaderDay}>{header}</div>
+              <div key={index} className="calendar-header-day">{header}</div>
             ))}
           </div>
-          <div className={styles.calendarMain}>
+          <div className="calendar-main">
             {calendarData.calendar.map((row, rowIndex) => (
-              <div key={rowIndex} className={styles.calendarRow}>
+              <div key={rowIndex} className="calendar-row">
                 {row.map((day, dayIndex) => (
-                  <div key={dayIndex} className={styles.calendarDay}>
+                  <div key={dayIndex} className="calendar-day">
                     {day.date && (
-                      <span className={`${styles.dayNumber} ${day.isToday ? styles.now : ""}`}>
+                      <span className={`day-number ${day.isToday ? "now" : ""}`}>
                         {day.date}
                       </span>
                     )}

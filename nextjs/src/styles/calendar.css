@@ -1,6 +1,6 @@
 /* CalendarCard - 日历卡片 */
 
-@keyframes pulse {
+@keyframes calendar-pulse {
   0%, 100% {
     transform: scale(1);
     box-shadow: 0 2px 8px var(--zopt-main-op);
@@ -22,7 +22,7 @@
   }
 }
 
-.cardWidget {
+.calendar-card-widget {
   position: relative;
   padding: 1.5rem;
   margin-top: 1rem;
@@ -34,18 +34,18 @@
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
 }
 
-.cardWidget:hover {
+.calendar-card-widget:hover {
   box-shadow: var(--zopt-shadow-border), 0 4px 20px rgba(66, 90, 239, 0.1);
   transform: translateY(-2px);
 }
 
-.itemContent {
+.calendar-item-content {
   display: flex;
   gap: 1rem;
   align-items: stretch;
 }
 
-.calendarAreaLeft {
+.calendar-area-left {
   flex: 0 0 auto;
   display: flex;
   flex-direction: column;
@@ -57,7 +57,7 @@
   position: relative;
 }
 
-.calendarAreaLeft::after {
+.calendar-area-left::after {
   content: "";
   position: absolute;
   right: -1px;
@@ -68,7 +68,7 @@
   opacity: 0.3;
 }
 
-.calendarWeek {
+.calendar-week {
   font-size: 11px;
   font-weight: 600;
   color: var(--zopt-secondtext);
@@ -78,7 +78,7 @@
   text-transform: uppercase;
 }
 
-.calendarDate {
+.calendar-date {
   font-size: 40px;
   font-weight: 800;
   line-height: 1;
@@ -92,7 +92,7 @@
   position: relative;
 }
 
-.calendarMonth {
+.calendar-month {
   font-size: 13px;
   font-weight: 600;
   color: var(--zopt-fontcolor);
@@ -100,7 +100,7 @@
   white-space: nowrap;
 }
 
-.calendarSolar {
+.calendar-solar {
   font-size: 11px;
   color: var(--zopt-secondtext);
   margin-bottom: 0.25rem;
@@ -112,7 +112,7 @@
   width: fit-content;
 }
 
-.calendarLunar {
+.calendar-lunar {
   font-size: 11px;
   color: var(--zopt-main);
   white-space: nowrap;
@@ -120,7 +120,7 @@
   font-weight: 500;
 }
 
-.calendarAreaRight {
+.calendar-area-right {
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -128,14 +128,14 @@
   gap: 0.5rem;
 }
 
-.calendarHeader {
+.calendar-header {
   display: flex;
   justify-content: space-between;
   margin-bottom: 0.25rem;
   padding: 0 2px;
 }
 
-.calendarHeaderDay {
+.calendar-header-day {
   flex: 1;
   text-align: center;
   font-size: 11px;
@@ -144,25 +144,25 @@
   padding: 4px 0;
 }
 
-.calendarHeaderDay:first-child,
-.calendarHeaderDay:last-child {
+.calendar-header-day:first-child,
+.calendar-header-day:last-child {
   color: var(--zopt-main);
 }
 
-.calendarMain {
+.calendar-main {
   width: 100%;
   display: flex;
   flex-direction: column;
   gap: 4px;
 }
 
-.calendarRow {
+.calendar-row {
   display: flex;
   justify-content: space-between;
   gap: 2px;
 }
 
-.calendarDay {
+.calendar-day {
   flex: 1;
   text-align: center;
   display: flex;
@@ -171,7 +171,7 @@
   height: 26px;
 }
 
-.dayNumber {
+.day-number {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -186,56 +186,56 @@
   position: relative;
 }
 
-.dayNumber:hover {
+.day-number:hover {
   background: var(--zopt-main-op);
   color: var(--zopt-main);
   transform: scale(1.15);
 }
 
-.dayNumber.now {
+.day-number.now {
   background: linear-gradient(135deg, var(--zopt-main) 0%, var(--zopt-main-op-deep) 100%);
   color: var(--zopt-white);
   font-weight: 700;
   box-shadow: 0 4px 12px var(--zopt-main-op);
-  animation: pulse 2s ease-in-out infinite;
+  animation: calendar-pulse 2s ease-in-out infinite;
 }
 
-.dayNumber.now:hover {
+.day-number.now:hover {
   transform: scale(1.2);
   box-shadow: 0 6px 20px var(--zopt-main-op-deep);
 }
 
-.calendarRow .calendarDay:first-child .dayNumber:not(.now),
-.calendarRow .calendarDay:last-child .dayNumber:not(.now) {
+.calendar-row .calendar-day:first-child .day-number:not(.now),
+.calendar-row .calendar-day:last-child .day-number:not(.now) {
   color: var(--zopt-main);
   opacity: 0.8;
 }
 
-.calendarRow .calendarDay:first-child .dayNumber:not(.now):hover,
-.calendarRow .calendarDay:last-child .dayNumber:not(.now):hover {
+.calendar-row .calendar-day:first-child .day-number:not(.now):hover,
+.calendar-row .calendar-day:last-child .day-number:not(.now):hover {
   opacity: 1;
 }
 
 @media (max-width: 768px) {
-  .cardWidget {
+  .calendar-card-widget {
     padding: 1rem;
   }
   
-  .calendarDate {
+  .calendar-date {
     font-size: 32px;
   }
   
-  .dayNumber {
+  .day-number {
     width: 22px;
     height: 22px;
     font-size: 10px;
   }
   
-  .calendarDay {
+  .calendar-day {
     height: 24px;
   }
   
-  .calendarAreaLeft {
+  .calendar-area-left {
     min-width: 75px;
     max-width: 75px;
     padding-right: 0.5rem;
